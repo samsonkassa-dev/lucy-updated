@@ -1,14 +1,16 @@
-"use client"
-
-import Navbar from "@/components/NavBar";
-import { useState } from "react";
+import Footer from "@/components/Footer";
+import { Suspense } from "react";
+import LandingPage from "@/components/Landing";
 
 export default function Home() {
-  const [active, setActive] = useState<number | null>(null);
-
   return (
     <div>
-      <Navbar setActive={() =>setActive(9)} />
+      <Suspense>
+        <LandingPage/>
+      </Suspense>
+
+
+      <Footer />
     </div>
   );
 }

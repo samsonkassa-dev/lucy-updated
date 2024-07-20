@@ -32,32 +32,58 @@
     "sectionFourTitle": "Let your child’s tomorrow start now!",
     "sectionFourDesc": "Take the first step in shaping their future and secure their spot in our transformative coding courses.",
     "sectionFiveTitle": "Frequently Asked Questions",
-    "sectionFiveComponents_1_question": "Who is Lucy Coding for?",
-    "sectionFiveComponents_1_answer": "Lucy coding is targeted at children between the ages of 8-18 that want to kick start their journey to the world of programming and develop and/or enhance skills in coding and AI. The program is great for beginners and advanced students.",
-    "sectionFiveComponents_2_question": "What is Lucy Coding, and what does it offer?",
-    "sectionFiveComponents_2_answer": "Lucy Coding is an online coding education platform that aims to arm kids and youth with basic coding and 21st century skills mainly for Ethiopian diaspora children. Our mission is to provide the next generation of Ethiopian leaders with the technical skills and knowledge they need to succeed in the digital world. Through our platform, we offer a range of courses tailored to the needs of Ethiopian diaspora children, from beginner to advanced levels. We offer a variety of coding languages and tools, such as Scratch, Python, Website development, and Mobile app development. The program also introduces AI technology to students and guides them through the basics so they have a solid foundation. This ensures that students have access to a range of technologies and can choose the ones that align with their interests and goals.",
-    "sectionFiveComponents_3_question": "What are the technical requirements for joining Lucy? What will my child need to effectively take part in and complete this program?",
-    "sectionFiveComponents_3_answer": "The course will be taken online via the internet. Your child or children will need a computer or laptop, reliable WIFI or internet connection, and must use a web browser like Google Chrome or Firefox. For video conferencing with instructors, your child will also need a webcam. The platform for our courses will be Google Classroom and students will be able to engage with the mentors throughout their learning experience.",
-    "sectionFiveComponents_4_question": "I have more than one child, can they all take the course at the same time?",
-    "sectionFiveComponents_4_answer": "Absolutely!  As a matter of fact, we offer a family discount for families with more than one prospective student. When enrolling more than one child you can receive a discount of 5%. You will also receive another 5% discount if you pay upfront for the whole 12 sessions.",
-    "sectionFiveComponents_5_question": "How long is the training and how much does the course cost?",
-    "sectionFiveComponents_5_answer": "The training consists of 12 sessions, and your child can choose from three options to complete them:",
-    "sectionFiveComponents_5_lists_1": "First month: 3 sessions per week",
-    "sectionFiveComponents_5_lists_2": "Month and a half: 2 sessions per week",
-    "sectionFiveComponents_5_lists_3": "Three months: 1 session per week.",
-    "sectionFiveComponents_5_answer2": "The cost for each set of 4 sessions is $100 USD. Therefore, the total program cost is $300 USD for 12 sessions. With applicable discounts, the cost will be $285 USD. The program includes live mentorship to ensure your child's success.",
-    "sectionFiveComponents_6_question": "What language will the course be taught in?",
-    "sectionFiveComponents_6_answer": "The course will be taught primarily in English but some of our tutors and mentors also know a variety of other local Ethiopian and African languages.",
-    "sectionFiveComponents_7_question": "What is the process for registering and enrolling in Lucy?",
-    "sectionFiveComponents_7_answer": "Registration for the Lucy coding will be all done online. You will answer questions online regarding your child that is enrolling and pay a registration fee as well. Once this is complete your child will be ready to start at Lucy coding.",
-    "sectionFiveComponents_8_question": "Where do I pay the program fee?",
-    "sectionFiveComponents_8_answer": "Once signed up, you will be asked to pay the fee online using your preferred payment method. Once paid your child will be fully registered and ready to start the course.",
-    "sectionFiveComponents_9_question": "Who are the instructors of Lucy, and what are their qualifications?",
-    "sectionFiveComponents_9_answer": "The program is taught by knowledgeable and trained instructors from Ethiopia. Your child will be mentored through the entire course and will be able to video call, chat, and discuss any issues or content related questions. They will be guided throughout the entire learning experience.",
-    "sectionFiveComponents_10_question": "What discounts are available for families with multiple children?",
-    "sectionFiveComponents_10_answer": "We offer a family discount for families with more than one prospective student. When enrolling more than one child you can receive a discount of 5 %. You will also receive another 5% discount if you pay upfront for the whole 12 sessions. With the discount applied, the cost of the program will be $285 USD/ 12 sessions.",
-    "sectionFiveComponents_11_question": "What kind of package do you offer for students who want to enroll in a group?",
-    "sectionFiveComponents_11_answer": "We offer special arrangements and discounts for students interested in group enrollment. Our goal is to provide an accessible and affordable learning experience that emphasizes collaboration. Please reach out to us at contact@lucycoding.com, and we'll gladly assist you in making the necessary arrangements to ensure a successful group enrollment experience.",
+    "sectionFiveComponents": [
+        {
+          "question": "Who is Lucy Coding for?",
+          "answer": "Lucy coding is targeted at children between the ages of 8-18 that want to kick start their journey to the world of programming and develop and/or enhance skills in coding and AI. The program is great for beginners and advanced students."
+        },
+        {
+          "question": "What is Lucy Coding, and what does it offer?",
+          "answer": "Lucy Coding is an online coding education platform that aims to arm kids and youth with basic coding and 21st century skills mainly for Ethiopian diaspora children. Our mission is to provide the next generation of Ethiopian leaders with the technical skills and knowledge they need to succeed in the digital world. Through our platform, we offer a range of courses tailored to the needs of Ethiopian diaspora children, from beginner to advanced levels. We offer a variety of coding languages and tools, such as Scratch, Python, Website development, and Mobile app development. The program also introduces AI technology to students and guides them through the basics so they have a solid foundation. This ensures that students have access to a range of technologies and can choose the ones that align with their interests and goals."
+        },
+        {
+          "question": "What are the technical requirements for joining Lucy? What will my child need to effectively take part in and complete this program?",
+          "answer": "The course will be taken online via the internet. Your child or children will need a computer or laptop, reliable WIFI or internet connection, and must use a web browser like Google Chrome or Firefox. For video conferencing with instructors, your child will also need a webcam. The platform for our courses will be Google Classroom and students will be able to engage with the mentors throughout their learning experience."
+        },
+        {
+          "question": "I have more than one child, can they all take the course at the same time?",
+          "answer": "Absolutely!  As a matter of fact, we offer a family discount for families with more than one prospective student. When enrolling more than one child you can receive a discount of 5%. You will also receive another 5% discount if you pay upfront for the whole 12 sessions."
+        },
+        {
+          "question": "How long is the training and how much does the course cost?",
+          "answer": "The training consists of 12 sessions, and your child can choose from three options to complete them:",
+          "lists": [
+            "First month: 3 sessions per week",
+            "Month and a half: 2 sessions per week",
+            "Three months: 1 session per week."
+          ],
+          "answer2": "The cost for each set of 4 sessions is $100 USD. Therefore, the total program cost is $300 USD for 12 sessions. With applicable discounts, the cost will be $285 USD. The program includes live mentorship to ensure your child's success."
+        },
+        {
+          "question": "What language will the course be taught in?",
+          "answer": "The course will be taught primarily in English but some of our tutors and mentors also know a variety of other local Ethiopian and African languages."
+        },
+        {
+          "question": "What is the process for registering and enrolling in Lucy?",
+          "answer": "Registration for the Lucy coding will be all done online. You will answer questions online regarding your child that is enrolling and pay a registration fee as well. Once this is complete your child will be ready to start at Lucy coding."
+        },
+        {
+          "question": "Where do I pay the program fee?",
+          "answer": "Once signed up, you will be asked to pay the fee online using your preferred payment method. Once paid your child will be fully registered and ready to start the course."
+        },
+        {
+          "question": "Who are the instructors of Lucy, and what are their qualifications?",
+          "answer": "The program is taught by knowledgeable and trained instructors from Ethiopia. Your child will be mentored through the entire course and will be able to video call, chat, and discuss any issues or content related questions. They will be guided throughout the entire learning experience."
+        },
+        {
+          "question": "What discounts are available for families with multiple children?",
+          "answer": "We offer a family discount for families with more than one prospective student. When enrolling more than one child you can receive a discount of 5 %. You will also receive another 5% discount if you pay upfront for the whole 12 sessions. With the discount applied, the cost of the program will be $285 USD/ 12 sessions."
+        },
+        {
+          "question": "What kind of package do you offer for students who want to enroll in a group?",
+          "answer": "We offer special arrangements and discounts for students interested in group enrollment. Our goal is to provide an accessible and affordable learning experience that emphasizes collaboration. Please reach out to us at contact@lucycoding.com, and we'll gladly assist you in making the necessary arrangements to ensure a successful group enrollment experience."
+        }
+      ],
     "sectionSix_cardOneTitle": "Trainer/Student Ratio",
     "sectionSix_cardOneDesc": "With a 1:1 or better trainer-to-student ratio, we ensure personalized attention and job opportunities for qualified trainers.",
     "sectionSix_cardTwoTitle": "Flexible Schedules",
@@ -87,7 +113,7 @@
     "contactUsPage_formComponents_agree": " I accept the",
     "contactUsPage_formComponents_terms": "Friendly Privacy Policy",
     "contactUsPage_formComponents_send": "Send Message",
-    "registerPage_parentComponent_title": "Your Details",
+    "registerPage_parentComponent_title": "Parent Details",
     "registerPage_parentComponent_name": "First Name",
     "registerPage_parentComponent_lastName": "Last Name",
     "registerPage_parentComponent_email": "Email",
@@ -101,23 +127,20 @@
     "registerPage_studentComponent_grade": "Grade Level",
     "registerPage_studentComponent_codingXP": "Coding Experience",
     "registerPage_studentComponent_add": "Add another student",
-    "registerPage_studentComponent_grades": [
-        "Select Grade Level",
-        "Grade 2-4",
-        "Grade 5-8",
-        "Grade 9-12"
-    ],
-    "registerPage_studentComponent_codingXPs": [
-        "Select a coding experience",
-        "No experience",
-        "Experienced"
-    ],
+    "registerPage_studentComponent_grades_default": "Select Grade Level",
+    "registerPage_studentComponent_codingXPs_title": "Your coding experience",
+    "registerPage_studentComponent_grades[1]":"Grade 2-4",
+    "registerPage_studentComponent_grades[2]":"Grade 5-8",
+    "registerPage_studentComponent_grades[3]":"Grade 9-12",
+    "registerPage_studentComponent_codingXPs[1]": "No experience",
+    "registerPage_studentComponent_codingXPs[2]": "Experienced",
     "registerPage_PrerequisiteDesc": "Prerequisite",
     "registerPage_recommended_session": "1hr per session",
-    "registerPage_recommended_sessions": "sessions",
-    "registerPage_recommended_moneyPerSession": "$33 per session",
+    "registerPage_recommended_sessions": "12 sessions",
+    "registerPage_recommended_moneyPerSession": "$25 per session",
     "registerPage_recommended_skillsGained": "Skills Gained",
     "registerPage_recommended_topicsCovered": "Topics Covered",
+    "registerPage_interests_title": "Interest",
     "registerPage_interests": [
         "Interest",
         " Choose An Interest",
@@ -143,7 +166,7 @@
     "registerPage_frequency_sessionEnroll_2_time": "Every Tue and Thu",
     "registerPage_frequency_sessionEnroll_2_price": "$360",
     "registerPage_date_title": "Select a start date and time",
-    "registerPage_explore": "Explore Courses",
+    "registerPage_explore": "Other Courses",
     "registerPage_exploredCourse": "The below is your picked course",
     "registerPage_exploredCoursesSwitch": "እኛ ወደ መረጥንልዎ ኮርስ ለመመለስ ይህን ይጫኑ።",
     "registerPage_timezone": "TimeZone",

@@ -1,61 +1,35 @@
-"use client";
+"use client"
+
 
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useDictionary } from "@/hooks/useDictionary";
 import { navItems } from "@/constants/navigation";
 
-interface NavbarProps {
-  setActive: () => void;
-}
-
-const Navbar = ({ setActive }: NavbarProps) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
   const locale = searchParams.get("locale") || "en";
   const dropdown = useRef<HTMLButtonElement>(null);
-  const dictionary = useDictionary(locale);
+
   const locales = ["en", "am"];
   const switchLocale = locales.find((l) => l !== locale);
 
-  const asPath = `${pathname}?${searchParams.toString()}`;
+  const { getDictionaryString } = useDictionary(locale);
 
-  const getDictionaryString = (key: string): string => {
-    const value = dictionary[key];
-    if (typeof value === "string") {
-      return value;
-    }
-    return "";
-  };
-
-  useEffect(() => {
-    if (!isOpen) return;
-
-    const handleClick = (event: MouseEvent) => {
-      if (
-        dropdown.current &&
-        !dropdown.current.contains(event.target as Node)
-      ) {
-        setIsOpen(false);
-      }
-    };
-
-    window.addEventListener("click", handleClick);
-    return () => window.removeEventListener("click", handleClick);
-  }, [isOpen]);
+  const newSearchParams = new URLSearchParams(searchParams.toString());
+  newSearchParams.set("locale", switchLocale || "en");
+  const asPathWithLocale = `${pathname}?${newSearchParams.toString()}`;
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
 
   return (
     <nav className="bg-white fixed w-full z-20 top-0 px-0">
-      <div
-        onClick={setActive}
-        className="bg-purple flex justify-between items-center"
-      >
+      <div className="bg-purple flex justify-between items-center">
         <div className="flex justify-center flex-grow">
           <Link
             href="/#discount"
@@ -133,17 +107,17 @@ const Navbar = ({ setActive }: NavbarProps) => {
               </a>
             </Link>
 
-            <Link legacyBehavior href="/form">
+            <Link legacyBehavior href="/register">
               <a
                 className={`${
-                  pathname === "/form"
+                  pathname === "/register"
                     ? "font-black text-black"
                     : "text-gray-500 font-bold"
                 } border-transparent  inline-flex items-center px-1 pt-1 border-b-2 text-[20px]`}
               >
                 <div className="flex flex-col items-center min-h-10">
                   <div>{getDictionaryString("navbarComponents_register")}</div>
-                  {pathname === "/form" && (
+                  {pathname === "/register" && (
                     <div className="flex">
                       <Image
                         src="/curr.png"
@@ -183,17 +157,17 @@ const Navbar = ({ setActive }: NavbarProps) => {
               </a>
             </Link>
 
-            <Link legacyBehavior href="/About">
+            <Link legacyBehavior href="/about">
               <a
                 className={`${
-                  pathname === "/About"
+                  pathname === "/about"
                     ? "font-black text-black"
                     : "text-gray-500 font-bold"
                 } border-transparent  inline-flex items-center px-1 pt-1 border-b-2 text-[20px]`}
               >
                 <div className="flex flex-col items-center min-h-10">
                   <div>{getDictionaryString("navbarComponents_aboutUs")}</div>
-                  {pathname === "/About" && (
+                  {pathname === "/about" && (
                     <div className="flex">
                       <Image
                         src="/curr.png"
@@ -208,17 +182,17 @@ const Navbar = ({ setActive }: NavbarProps) => {
               </a>
             </Link>
 
-            <Link legacyBehavior href="/Blog">
+            <Link legacyBehavior href="/blog">
               <a
                 className={`${
-                  pathname === "/Blog"
+                  pathname === "/blog"
                     ? "font-black text-black"
                     : "text-gray-500 font-bold"
                 } border-transparent  inline-flex items-center px-1 pt-1 border-b-2 text-[20px]`}
               >
                 <div className="flex flex-col items-center min-h-10">
                   <div>{getDictionaryString("navbarComponents_blog")}</div>
-                  {pathname === "/Blog" && (
+                  {pathname === "/blog" && (
                     <div className="flex">
                       <Image
                         src="/curr.png"
@@ -257,20 +231,14 @@ const Navbar = ({ setActive }: NavbarProps) => {
                 </div>
               </a>
             </Link>
-            <Link
-              href={asPath.replace(
-                `locale=${locale}`,
-                `locale=${switchLocale}`
-              )}
-              locale={switchLocale}
-            >
+            <Link href={asPathWithLocale} locale={switchLocale}>
               <p className="text-[20px] lg:ml-5 lg:mt-3 hover:underline font-bold text-yellow">
                 {switchLocale?.includes("am") ? "አማ" : "En"}
               </p>
             </Link>
           </div>
           <div className="-mr-2 flex items-center lg:hidden">
-            <Link href={asPath} locale={switchLocale}>
+            <Link href={asPathWithLocale} locale={switchLocale}>
               <p className="text-[20px] mr-5 lg:mt-3 hover:underline font-bold text-yellow">
                 {switchLocale?.includes("am") ? "አማ" : "En"}
               </p>
@@ -296,20 +264,18 @@ const Navbar = ({ setActive }: NavbarProps) => {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden" id="mobile-menu">
+        <div className="lg:hidden font-indie" id="mobile-menu">
           <div className="pb-3 pt-12 space-y-2 pl-4">
-            {["/", "/form", "/formEnroll", "/About", "/Blog", "/contact"].map(
-              (path) => (
-                <Link key={path} href={path} legacyBehavior>
-                  <a
-                    onClick={() => setIsOpen(false)}
-                    className="block pl-3 pr-4 font-semibold text-[20px] sm:border-transparent sm:hover:text-white"
-                  >
-                    {dictionary[`navbarComponents.${path.slice(1)}`]}
-                  </a>
-                </Link>
-              )
-            )}
+            {navItems.map(({ path, key }) => (
+              <Link key={path} href={path} legacyBehavior>
+                <a
+                  onClick={() => setIsOpen(false)}
+                  className="block pl-3 pr-4 font-semibold text-[20px] sm:border-transparent sm:hover:text-white"
+                >
+                  {getDictionaryString(key)}
+                </a>
+              </Link>
+            ))}
           </div>
         </div>
       )}
