@@ -4,10 +4,8 @@ import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { toast, Toaster } from "react-hot-toast";
-import axios from "../../api/axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import moment from "moment";
-import { useGetTimezone } from "../../hooks/useGetTimezone";
 import { timeZones } from "../../data/timezones";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
@@ -132,7 +130,7 @@ const DatePickerPage: React.FC = () => {
       // Proceed with checkout if enrollment is successful
       const paymentDataArray: paymentData[] = finalRecommendation.map(
         (item: FInalRecommendation) => ({
-          type: "classstart",
+          type: "startnow",
           studentId: item.studentId,
           courseId: item.id,
           priceId: item.prices[0].priceId,

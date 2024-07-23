@@ -6,6 +6,7 @@ import SectionFive from "@/components/LandingPageComponents/SectionFive";
 import SectionSix from "@/components/LandingPageComponents/SectionSix";
 import SectionSeven from "@/components/LandingPageComponents/SectionSeven";
 import SectionEight from  "@/components/LandingPageComponents/SectionEight";
+import FeaturedCoursesSection from "./LandingPageComponents/FeaturedCourseCard";
 
 
 const LandingPage = () => {
@@ -18,6 +19,7 @@ const LandingPage = () => {
       <SectionFive/>
       <SectionSix/>
       <SectionSeven/>
+      <FeaturedCoursesSection/>
       <SectionEight/>
     </div>
   );

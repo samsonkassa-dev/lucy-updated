@@ -10,6 +10,7 @@ import { useFormContext } from "@/utils/FormContext";
 import { StudentData } from "@/types/type";
 import { useSearchParams } from "next/navigation";
 import { useDictionary } from "@/hooks/useDictionary";
+import { usePostStudentOnly } from "@/hooks/usePostStudentOnly";
 
 
 
@@ -19,7 +20,7 @@ interface FormData {
 
 
 const StudentInfoForm: React.FC= () => {
-  const { parentId, prevPage, nextPage, setStudentName, studentName  } = useFormContext();
+  const { parentId, prevPage, nextPage, setStudentName, recommendation } = useFormContext();
   // console.log(parentId)
   const [loading, setLoading] = useState(false);
   const [showInterest, setShowInterest] = useState<{ showInterestField: boolean; showInterestExperiance: boolean }[]>([]);
@@ -88,6 +89,7 @@ const StudentInfoForm: React.FC= () => {
 
 
   const {postStudent} = usePostStudent();
+  const {postStudentNoRecommendation} = usePostStudentOnly();
 
 
 
@@ -104,18 +106,34 @@ const StudentInfoForm: React.FC= () => {
   //  console.log(studentName)
    
 
+  if (!recommendation) {
+    try {
+      const response = await toast.promise(postStudentNoRecommendation(formattedData, parentId), {
+        loading: "Registering user",
+        success: "Success",
+        error: "something went wrong",
+      });
+  
+      nextPage();
+    } catch (error) {
+      setLoading(false);
+    }
+  } else {
     try {
       const response = await toast.promise(postStudent(formattedData, parentId), {
         loading: "Registering user",
         success: "Success",
         error: "something went wrong",
-        },
-      );
-
+      });
+  
       nextPage();
     } catch (error) {
       setLoading(false);
     }
+  }
+  
+    
+    
   };
 
   return (
@@ -135,19 +153,18 @@ const StudentInfoForm: React.FC= () => {
           >
             <div className="flex flex-col items-start mx-2 pb-2">
               <label className="font-bold">
-                  {getDictionaryString("registerPage_studentComponent_name")}
+                {getDictionaryString("registerPage_studentComponent_name")}
               </label>
               <div className="flex w-full lg:w-auto flex-col">
                 <input
                   className="border border-black/10 rounded p-2"
                   type="text"
-                  placeholder={
-                    getDictionaryString("registerPage_studentComponent_name")
-                  }
+                  placeholder={getDictionaryString(
+                    "registerPage_studentComponent_name"
+                  )}
                   {...register(`Students.${index}.FirstName`, {
                     required: "First name is required",
                   })}
-               
                 />
                 <ErrorMessage
                   errors={errors}
@@ -160,15 +177,15 @@ const StudentInfoForm: React.FC= () => {
             </div>
             <div className="flex flex-col items-start mx-2 pb-2">
               <label className="font-bold">
-              {getDictionaryString("registerPage_studentComponent_lastName")}
+                {getDictionaryString("registerPage_studentComponent_lastName")}
               </label>
               <div className="flex flex-col w-full lg:w-auto">
                 <input
                   className="border border-black/10 rounded p-2"
                   type="text"
-                  placeholder={
-                    getDictionaryString("registerPage_studentComponent_lastName")
-                  }
+                  placeholder={getDictionaryString(
+                    "registerPage_studentComponent_lastName"
+                  )}
                   {...register(`Students.${index}.LastName`, {
                     required: "Last name is required",
                   })}
@@ -211,27 +228,25 @@ const StudentInfoForm: React.FC= () => {
                   }}
                   defaultValue=""
                 >
-                  
                   <option className="bg-black/10" disabled>
-                    {
-                      getDictionaryString("registerPage_studentComponent_grades_default")
-                    }
+                    {getDictionaryString(
+                      "registerPage_studentComponent_grades_default"
+                    )}
                   </option>
                   <option className="bg-white" value="Grade 2-4">
-                    {
-                     getDictionaryString("registerPage_studentComponent_grades[1]")
-                    }
-                  
+                    {getDictionaryString(
+                      "registerPage_studentComponent_grades[1]"
+                    )}
                   </option>
                   <option className="bg-white" value="Grade 5-8">
-                    {
-                      getDictionaryString("registerPage_studentComponent_grades[2]")
-                    }
+                    {getDictionaryString(
+                      "registerPage_studentComponent_grades[2]"
+                    )}
                   </option>
                   <option className="bg-white" value="Grade 9-12">
-                    {
-                       getDictionaryString("registerPage_studentComponent_grades[3]")
-                    }
+                    {getDictionaryString(
+                      "registerPage_studentComponent_grades[3]"
+                    )}
                   </option>
                 </select>
                 <ErrorMessage
@@ -245,7 +260,7 @@ const StudentInfoForm: React.FC= () => {
             </div>
             <div className="flex flex-col items-start mx-2 pb-2">
               <label className="font-bold">
-             {getDictionaryString("registerPage_studentComponent_codingXP")}
+                {getDictionaryString("registerPage_studentComponent_codingXP")}
               </label>
               <div className="flex flex-col w-full lg:w-auto">
                 <select
@@ -270,19 +285,19 @@ const StudentInfoForm: React.FC= () => {
                   defaultValue=""
                 >
                   <option className="bg-black/10" disabled>
-                    {
-                     getDictionaryString("registerPage_studentComponent_codingXPs_title")
-                    }
+                    {getDictionaryString(
+                      "registerPage_studentComponent_codingXPs_title"
+                    )}
                   </option>
                   <option className="bg-white" value="No-Experiance">
-                    {
-                     getDictionaryString("registerPage_studentComponent_codingXPs[1]")
-                    }
+                    {getDictionaryString(
+                      "registerPage_studentComponent_codingXPs[1]"
+                    )}
                   </option>
                   <option className="bg-white" value="Beginner-Level">
-                    {
-                      getDictionaryString("registerPage_studentComponent_codingXPs[2]")
-                    }
+                    {getDictionaryString(
+                      "registerPage_studentComponent_codingXPs[2]"
+                    )}
                   </option>
                 </select>
                 <ErrorMessage
@@ -295,7 +310,7 @@ const StudentInfoForm: React.FC= () => {
               </div>
             </div>
             {showInterest[index]?.showInterestField &&
-              showInterest[index]?.showInterestExperiance && (
+              showInterest[index]?.showInterestExperiance && recommendation && (
                 <div className="flex flex-col items-start mx-2 pb-2">
                   <label className="font-bold">
                     {getDictionaryString("registerPage_interests_title")}
@@ -308,9 +323,8 @@ const StudentInfoForm: React.FC= () => {
                       })}
                       defaultValue=""
                     >
-                      
-                      <option className="bg-black/10" disabled >
-                      {getDictionaryString("registerPage_interests_title")}
+                      <option className="bg-black/10" disabled>
+                        {getDictionaryString("registerPage_interests_title")}
                       </option>
                       <option className="bg-white" value="Web">
                         Web
@@ -350,14 +364,15 @@ const StudentInfoForm: React.FC= () => {
             )}
           </div>
         ))}
-
-        <button
-          type="button"
-          onClick={handleAddStudent}
-          className="text-blue-500 underline mt-11"
-        >
-          {getDictionaryString("registerPage_studentComponent_add")}
-        </button>
+        {recommendation && (
+          <button
+            type="button"
+            onClick={handleAddStudent}
+            className="text-blue-500 underline mt-11"
+          >
+            {getDictionaryString("registerPage_studentComponent_add")}
+          </button>
+        )}
         <div className="flex flex-col md:flex-row items-center justify-center gap-x-32 my-4 w-full">
           <button
             onClick={prevPage}
@@ -371,11 +386,11 @@ const StudentInfoForm: React.FC= () => {
             className="py-2 w-[230px] h-11 text-center font-bold bg-yellow rounded-md focus:outline-none"
             disabled={loading}
           >
-        {getDictionaryString("registerPage_next")}
+            {getDictionaryString("registerPage_next")}
           </button>
         </div>
       </form>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 };

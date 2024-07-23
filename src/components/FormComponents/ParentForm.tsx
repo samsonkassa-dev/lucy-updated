@@ -20,8 +20,7 @@ const ParentForm: React.FC= () => {
   const [loading, setLoading] = useState(false);
   const searchParams = useSearchParams();
   const locale = searchParams.get("locale") || "en";
-  const dictionary = useDictionary(locale);
-  const { nextPage, prevPage } = useFormContext();
+  const { nextPage, prevPage, recommendation } = useFormContext();
 
 
   const { getNestedValue, getDictionaryString } = useDictionary(locale);
@@ -99,6 +98,11 @@ const ParentForm: React.FC= () => {
     }
   };
   
+
+  const handlePrev=()=>{
+    prevPage()
+
+  }
   
 
   return (
@@ -332,14 +336,22 @@ const ParentForm: React.FC= () => {
           </div>
         </div>
 
+        <div className="flex items-center justify-center gap-x-32 my-4 w-full">
+        {!recommendation && (
         <button
-          type="submit"
-          className="py-2 w-[230px] h-11 my-10 text-center font-bold bg-yellow rounded-lg focus:outline-none shadow-md"
-          disabled={loading}
-        
+          className="bg-yellow w-245 h-48 border-solid rounded-md font-bold"
+          onClick={handlePrev}
         >
-          {getDictionaryString("registerPage_next")}
+          {getDictionaryString("registerPage_back")}
         </button>
+      )}
+          <button
+            className="bg-yellow w-245 h-48 border-solid rounded-md font-bold"
+            type="submit"
+          >
+            {getDictionaryString("registerPage_next")}
+          </button>
+        </div>
       </form>
       <Toaster />
     </div>

@@ -8,6 +8,8 @@ interface FormContextType {
   setFrequencyImmediatelty: React.Dispatch<React.SetStateAction<string>>;
   finalRecommendation: FInalRecommendation[ ] | null;
   setFinalRecommendation: React.Dispatch<React.SetStateAction<FInalRecommendation[] | null>>;
+  recommendation: boolean;
+  setRecommendation: React.Dispatch<SetStateAction<boolean>>;
   frequency: boolean;
   setFrequency: React.Dispatch<SetStateAction<boolean>>;
   studentName: string[];
@@ -29,6 +31,7 @@ export const FormProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [finalRecommendation, setFinalRecommendation] = useState<FInalRecommendation[] | null>(null);
   const [studentName, setStudentName] = useState<string[]>([]);
   const [frequency, setFrequency] = useState<boolean>(true);
+  const [recommendation, setRecommendation] = useState<boolean>(true);
   const [page, setPage] = useState(1);
   const [frequencyImmediately, setFrequencyImmediatelty] = useState<string | ''>('');
 
@@ -47,6 +50,8 @@ export const FormProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         setFrequencyImmediatelty,
         finalRecommendation,
         setFinalRecommendation,
+        recommendation,
+        setRecommendation,
         frequency,
         setFrequency,
         studentName,

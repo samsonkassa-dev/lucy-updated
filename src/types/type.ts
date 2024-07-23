@@ -82,7 +82,7 @@ export interface FInalRecommendation {
     }[];
     topicsCovered: string[];
     skillsGained: string[];
-    catagory: string;
+    category: string;
     gradeLevel: string;
     prerequisite: string;
     codingLevel: string;

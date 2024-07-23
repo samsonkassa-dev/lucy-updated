@@ -7,6 +7,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { useDictionary } from "@/hooks/useDictionary";
 import { navItems } from "@/constants/navigation";
+import { useFormContext } from '@/utils/FormContext';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -15,7 +16,7 @@ const Navbar = () => {
   const searchParams = useSearchParams();
   const locale = searchParams.get("locale") || "en";
   const dropdown = useRef<HTMLButtonElement>(null);
-
+  const {recommendation, setRecommendation} = useFormContext();
   const locales = ["en", "am"];
   const switchLocale = locales.find((l) => l !== locale);
 
@@ -26,6 +27,14 @@ const Navbar = () => {
   const asPathWithLocale = `${pathname}?${newSearchParams.toString()}`;
 
   const toggleMenu = () => setIsOpen((prev) => !prev);
+
+  const handleRedirect = () => {
+    setRecommendation(false);
+  };
+
+  const handleRegisterRedirect = () =>{
+    setRecommendation(true)
+  }
 
   return (
     <nav className="bg-white fixed w-full z-20 top-0 px-0">
@@ -109,6 +118,7 @@ const Navbar = () => {
 
             <Link legacyBehavior href="/register">
               <a
+                onClick={handleRegisterRedirect}
                 className={`${
                   pathname === "/register"
                     ? "font-black text-black"
@@ -117,7 +127,7 @@ const Navbar = () => {
               >
                 <div className="flex flex-col items-center min-h-10">
                   <div>{getDictionaryString("navbarComponents_register")}</div>
-                  {pathname === "/register" && (
+                  {pathname === "/register" && recommendation && (
                     <div className="flex">
                       <Image
                         src="/curr.png"
@@ -132,17 +142,18 @@ const Navbar = () => {
               </a>
             </Link>
 
-            <Link legacyBehavior href="/formEnroll">
+            <Link legacyBehavior href="/register">
               <a
+                onClick={handleRedirect}
                 className={`${
-                  pathname === "/formEnroll"
+                  pathname === "/register"
                     ? "font-black text-black"
                     : "text-gray-500 font-bold"
-                } border-transparent  inline-flex items-center px-1 pt-1 border-b-2 text-[20px]`}
+                } border-transparent inline-flex items-center px-1 pt-1 border-b-2 text-[20px] cursor-pointer`}
               >
                 <div className="flex flex-col items-center min-h-10">
                   <div>{getDictionaryString("navbarComponents_courses")}</div>
-                  {pathname === "/formEnroll" && (
+                  {pathname === "/register" && !recommendation &&(
                     <div className="flex">
                       <Image
                         src="/curr.png"
@@ -192,7 +203,7 @@ const Navbar = () => {
               >
                 <div className="flex flex-col items-center min-h-10">
                   <div>{getDictionaryString("navbarComponents_blog")}</div>
-                  {pathname === "/blog" && (
+                  {pathname === "/blog"  && (
                     <div className="flex">
                       <Image
                         src="/curr.png"
@@ -248,8 +259,6 @@ const Navbar = () => {
               onClick={toggleMenu}
               type="button"
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-[rgba(239, 195, 90, 1)] focus:outline-none focus:ring-inset focus:ring-white"
-              //   aria-controls="mobile-menu"
-              //   aria-expanded={true} // Pass boolean directly
             >
               <span className="sr-only">Open main menu</span>
               <Image

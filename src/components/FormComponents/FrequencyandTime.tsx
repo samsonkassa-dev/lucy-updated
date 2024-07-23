@@ -66,7 +66,7 @@ const FrequencyandTime: React.FC = () => {
   const searchParams = useSearchParams();
   const locale = searchParams.get("locale") || "en";
   const { getDictionaryString } = useDictionary(locale);
-  const { frequency, setFrequency, finalRecommendation} = useFormContext();
+  const { frequency, setFrequency, finalRecommendation, prevPage} = useFormContext();
   console.log(finalRecommendation)
 
 
@@ -432,7 +432,7 @@ const FrequencyandTime: React.FC = () => {
                   if (activeTab > 0) {
                     handleCourseSelection(activeTab - 1);
                   } else {
-                    // props.prev();
+                    prevPage()
                   }
                 }}
                 className="bg-yellow w-245 h-48 border-solid rounded-md font-bold"

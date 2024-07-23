@@ -9,23 +9,25 @@ import { useSearchParams } from "next/navigation";
 import { useGetCourses } from "@/hooks/useGetAllCourse";
 import { useEffect } from "react";
 import { usePostCourse } from "@/hooks/usePostSaveCourse";
+import LoadingSpinner from "@/components/Spinner";
 
 export default function Recommended() {
   const { data: courses, error, isLoading } = useGetCourses();
+
   const searchParams = useSearchParams();
   const locale = searchParams.get("locale") || "en";
   const [recommendationArraysUpdated, setRecommendationArraysUpdated] = useState<boolean>(false);
   const { getDictionaryString } = useDictionary(locale);
 
-  const { courseData, studentName, nextPage, setCourseData, finalRecommendation, setFinalRecommendation} = useFormContext();
-  console.log(courseData);
+  const { courseData, studentName, nextPage, setFinalRecommendation} = useFormContext();
+  // console.log(courseData);
   const [selectedStudentIndex, setSelectedStudentIndex] = useState(0);
   const [recommendationArrays, setRecommendationArrays] = useState(
     studentName.map((_, index) =>
       courseData?.[locale] ? courseData[locale][index] : null
     )
   );
-  console.log(recommendationArrays);
+  // console.log(recommendationArrays);
   const [originalCourses, setOriginalCourses] = useState<(CourseData | null)[]>(
     studentName.map(() => null)
   );
@@ -46,6 +48,8 @@ export default function Recommended() {
     if (recommendationArraysUpdated) {
       if (selectedStudentIndex < studentName.length - 1) {
         setSelectedStudentIndex((prevIndex) => prevIndex + 1);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
       } else {
         const formattedData = recommendationArrays
           .filter((course) => course !== null)
@@ -129,6 +133,18 @@ const handleNextClick = () => {
   }
 };
   
+if (isLoading) {
+  return <LoadingSpinner/>;
+}
+
+if (error) {
+  return (
+    <div>
+      <LoadingSpinner />
+      {toast.error("Error fetching coueses!")}
+    </div>
+  );
+}
   
   
 

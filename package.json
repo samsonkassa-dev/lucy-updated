@@ -21,6 +21,8 @@
     "axios": "^1.7.2",
     "countries-list": "^2.6.1",
     "dayjs": "^1.11.11",
+    "dotenv": "^16.4.5",
+    "html-react-parser": "^5.1.12",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.45",
     "next": "14.2.4",

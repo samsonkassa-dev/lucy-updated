@@ -6,18 +6,21 @@ import StudentInfoForm from '@/components/FormComponents/StudentInfoForm';
 import Recommended from '@/components/FormComponents/Recommendation';
 import FrequencyandTime from '@/components/FormComponents/FrequencyandTime'
 import DatePickerPage from '@/components/FormComponents/DateandTimePickerImmediately';
+import ExploreCourse from '@/components/FormComponents/ExploreCourse';
+import ExploreCourseDetails from '@/components/FormComponents/ExploreCourseDetails';
 import { useFormContext } from '@/utils/FormContext';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Head from 'next/head';
+import LoadingSpinner from './Spinner';
 
 const RegisterPage: React.FC = () => {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const status = searchParams.get("status");
   const tab = searchParams.get("tab");
-  const { page, frequency } = useFormContext();
+  const { page, recommendation } = useFormContext();
 
-  const pages = [
+
+  const pagesWithRecommendation = [
     { name: "Parent Form", component: <ParentForm />, progress: 12.5 },
     { name: "Student Info Form", component: <StudentInfoForm />, progress: 25 },
     { name: "Recommendation", component: <Recommended />, progress: 50 },
@@ -31,7 +34,31 @@ const RegisterPage: React.FC = () => {
       component: <DatePickerPage />,
       progress: 85,
     },
+    
   ];
+
+  const pagesWithoutRecommendation = [
+    { name: "Explore Courses", component: <ExploreCourse />, progress: 6.5 },
+    { name: "Course Details", component: <ExploreCourseDetails />, progress: 12.5 },
+    { name: "Parent Form", component: <ParentForm />, progress: 25 },
+    {
+      name: "Student Info Form",
+      component: <StudentInfoForm/>,
+      progress: 50,
+    },
+    {
+      name: "Date and Time Picker",
+      component: <FrequencyandTime />,
+      progress: 75,
+    },
+    {
+      name: "Date and Time Picker",
+      component: <DatePickerPage />,
+      progress: 85,
+    },
+  ];
+
+  const pages = recommendation ? pagesWithRecommendation : pagesWithoutRecommendation;
 
   useEffect(() => {
     if (tab && !isNaN(Number(tab))) {
@@ -58,7 +85,7 @@ const RegisterPage: React.FC = () => {
                   />
                 </div>
 
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense fallback={<div><LoadingSpinner/></div>}>
                   {status === "success" ? (
                     <div>Thank you for registering!</div>
                   ) : status === "cancel" ? (

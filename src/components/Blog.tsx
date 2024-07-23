@@ -10,7 +10,7 @@ import { Blog as BlogType } from "../types/type";
 const BlogPage: React.FC = () => {
   const [blogOverviews, setBlogOverviews] = useState<BlogType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const BASE_URL = "http://164.90.168.22:8001/";
+  const BASE_URL = process.env.BASE_URL;
 
   useEffect(() => {
     const fetchBlogs = async () => {

@@ -3,6 +3,8 @@ import { SaveCourse } from "@/types/type"
 
 
 export const usePostCourse = () => {
+
+    
     const postCourse = async (saveCourse: SaveCourse[]) =>{
         try{
             const response = await axios.post("/recommendations", saveCourse);
